@@ -60,7 +60,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation("com.google.firebase:firebase-auth:21.0.1")
-    implementation(libs.firebase.firestore)
+
 
     val nav_version = "2.7.7"
     implementation("androidx.navigation:navigation-compose:$nav_version")
@@ -75,4 +75,11 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation("com.airbnb.android:lottie-compose:6.4.0")
+
+    // Import the BoM for the Firebase platform
+    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
+
+    // Declare the dependency for the Cloud Firestore library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-firestore")
 }

@@ -37,9 +37,9 @@ class HealthViewModel: ViewModel(){
         context: Context,
         data: (UserHealthData) -> Unit
     ) = CoroutineScope(Dispatchers.IO).launch {
-         val firestoreRef = Firebase.firestore
-             .collection("health")
-             .document(medicalID)
+        val firestoreRef = Firebase.firestore
+            .collection("health")
+            .document(medicalID)
 
         try {
             firestoreRef.get()

@@ -18,9 +18,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.healthify.Health.GetHealthInfo
 import com.example.healthify.Health.HealthInfo
 import com.example.healthify.Health.HealthViewModel
+import com.example.healthify.Health.MainHealthActivity
 import com.example.healthify.SignInSignUp.SignInScreen
 import com.example.healthify.SignInSignUp.SignUpScreen
-import com.example.healthify.Health.MainHealthActivity
 import com.google.firebase.auth.FirebaseAuth
 
 @Composable
