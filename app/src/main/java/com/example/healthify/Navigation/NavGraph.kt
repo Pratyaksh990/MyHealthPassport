@@ -15,6 +15,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.healthify.Health.GetHealthInfo
 import com.example.healthify.Health.HealthInfo
 import com.example.healthify.Health.HealthViewModel
 import com.example.healthify.SignInSignUp.SignInScreen
@@ -42,6 +43,9 @@ fun NavGraph(navController: NavController, healthViewModel: HealthViewModel) {
         }
         composable(Screen.HealthInfo.route){
             HealthInfo(navController = navController, healthViewModel = healthViewModel)
+        }
+        composable(Screen.GetHealthInfo.route){
+            GetHealthInfo(navController = navController, healthViewModel = healthViewModel)
         }
 //        composable(Screen.AddDataScreen.route){
 //            AddDataScreen(navController = navController, sharedViewModel = sharedViewModel)

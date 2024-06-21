@@ -54,7 +54,7 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            navController.navigate(Screen.Home.route)
+                            navController.navigate(Screen.MainHealthActivity.route)
                         } else {
                             errorMessage = task.exception?.message
                         }

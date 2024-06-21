@@ -6,6 +6,7 @@ data class UserHealthData(
     var medicalID: String="",
     var name: String="",
     var bloodGroup: String="",
+    var age: Int=0,
     var gender: String="",
     var healthCondition: String="",
     var emergencyPhoneNumber: Int=0,

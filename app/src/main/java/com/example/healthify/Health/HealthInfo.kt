@@ -47,6 +47,8 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
     var medicalID: String by remember { mutableStateOf("") }
     var name: String by remember { mutableStateOf("") }
     var bloodGroup: String by remember { mutableStateOf("") }
+    var age: String by remember { mutableStateOf("") }
+    var ageInt: Int by remember { mutableStateOf(0) }
     var gender: String by remember { mutableStateOf("") }
     var healthCondition: String by remember { mutableStateOf("") }
     var emergencyPhoneNumber: String by remember { mutableStateOf("") }
@@ -109,6 +111,19 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
             label = {
                 Text(text = "Blood Group")
             }
+        )
+        OutlinedTextField( modifier = Modifier
+            .fillMaxWidth(),
+            value = age,
+            onValueChange = {
+                age=it
+                if(age.isNotEmpty()){
+                    ageInt = age.toInt()
+                }},
+            label = {
+                Text(text = "Age")
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
     OutlinedTextField( modifier = Modifier
             .fillMaxWidth(),
@@ -173,6 +188,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     medicalID = medicalID,
                     name = name,
                     bloodGroup = bloodGroup,
+                    age = ageInt,
                     gender = gender,
                     healthCondition = healthCondition,
                     emergencyPhoneNumber = emergencyPhoneNumberInt,

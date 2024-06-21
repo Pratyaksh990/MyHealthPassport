@@ -20,7 +20,7 @@ fun MainHealthActivity(navController: NavController){
             Button(onClick = { navController.navigate(Screen.HealthInfo.route) }, modifier = Modifier.padding(20.dp)) {
                 Text(text = "Save Data")
             }
-        Button(onClick = {  }, modifier = Modifier.padding(20.dp)) {
+        Button(onClick = { navController.navigate(Screen.GetHealthInfo.route) }, modifier = Modifier.padding(20.dp)) {
                 Text(text = "Retrieve Data")
             }
     }
