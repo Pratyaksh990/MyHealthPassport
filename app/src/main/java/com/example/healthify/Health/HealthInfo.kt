@@ -38,6 +38,7 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
+import com.example.healthify.DoctorLogin.AnimatedPreloaderPatient
 import com.example.healthify.R
 
 @Composable
@@ -79,7 +80,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                 color = MaterialTheme.colorScheme.background
             ) {
                 Box {
-                    AnimatedPreloader(modifier = Modifier
+                    AnimatedPreloaderPatient(modifier = Modifier
                         .size(300.dp, 200.dp)
                         .align(Alignment.Center)
                         .scale(scaleX = 1.3f, scaleY = 1.6f)
@@ -208,10 +209,10 @@ fun HealthInfoPreview(){
 }
 
 @Composable
-fun AnimatedPreloader(modifier: Modifier = Modifier) {
+fun AnimatedPreloaderDoctor(modifier: Modifier = Modifier) {
     val preloaderLottieComposition by rememberLottieComposition(
         LottieCompositionSpec.RawRes(
-            R.raw.lottieanimation1
+            R.raw.lottieanimationdoctor
         )
     )
 
