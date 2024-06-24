@@ -39,6 +39,7 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.healthify.DoctorLogin.AnimatedPreloaderPatient
+
 import com.example.healthify.R
 
 @Composable
@@ -213,6 +214,28 @@ fun AnimatedPreloaderDoctor(modifier: Modifier = Modifier) {
     val preloaderLottieComposition by rememberLottieComposition(
         LottieCompositionSpec.RawRes(
             R.raw.lottieanimationdoctor
+        )
+    )
+
+    val preloaderProgress by animateLottieCompositionAsState(
+        preloaderLottieComposition,
+        iterations = LottieConstants.IterateForever,
+        isPlaying = true
+    )
+
+
+    LottieAnimation(
+        composition = preloaderLottieComposition,
+        progress = preloaderProgress,
+        modifier = modifier
+    )
+}
+
+@Composable
+fun AnimatedPreloaderMainHealthActivity(modifier: Modifier = Modifier) {
+    val preloaderLottieComposition by rememberLottieComposition(
+        LottieCompositionSpec.RawRes(
+            R.raw.healthactivityanimation
         )
     )
 
