@@ -70,9 +70,9 @@ fun DoctorLogin(auth: FirebaseAuth) {
         ) {
             Box {
                 com.example.healthify.Health.AnimatedPreloaderDoctor(modifier = Modifier
-                    .size(300.dp, 200.dp)
+                    .size(500.dp, 400.dp)
                     .align(Alignment.Center)
-                    .scale(scaleX = 1.3f, scaleY = 1.6f)
+                    // .scale(scaleX = 1.3f, scaleY = 1.6f)
                 )
             }
         }
@@ -142,7 +142,7 @@ fun DoctorLogin(auth: FirebaseAuth) {
             Text(text = "Log In")
         }
         TextButton(onClick = { /* navController.navigate(Screen.Login.route) */ }) {
-            Text(text = "Don't have an account? Sign Up")
+            Text(text = "Are you a Patient? Sign In")
         }
     }
 }

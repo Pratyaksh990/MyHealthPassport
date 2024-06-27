@@ -1,13 +1,18 @@
 package com.example.healthify.Health
 
+import android.widget.ScrollView
+import android.widget.Scroller
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
@@ -24,8 +29,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.healthify.Navigation.Screen
 
 @Composable
@@ -47,20 +55,23 @@ fun GetHealthInfo(
     var medications: String by remember { mutableStateOf("") }
 
     val context = LocalContext.current
+    val scrollView = rememberScrollState()
 
     Column(modifier = Modifier.fillMaxSize()) {
         Row(modifier = Modifier
             .padding(start = 15.dp, top = 15.dp)
-            .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Start
+            .fillMaxWidth()
+            .verticalScroll(scrollView),
+            horizontalArrangement = Arrangement.Start,
         ) {
             IconButton(onClick = { navController.navigateUp() }) {
                 Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "back_button")
             }
         }
         Column(modifier = Modifier
-            .padding(start = 60.dp, end = 60.dp, bottom = 50.dp)
-            .fillMaxWidth(),
+            .padding(start = 60.dp, end = 60.dp)
+            .fillMaxWidth()
+            .verticalScroll(scrollView),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -97,7 +108,7 @@ fun GetHealthInfo(
                         }
                     }
                 ) {
-                    Text(text = "Get Data")
+                    Text(text = "Get Data", textAlign = TextAlign.Center)
                 }
             }
             OutlinedTextField(
@@ -193,13 +204,31 @@ fun GetHealthInfo(
                 }
             )
             Button(modifier = Modifier
-                .padding(top = 20.dp)
-                .fillMaxWidth(),
+                .padding(10.dp)
+                .width(100.dp)
+                .size(50.dp),
                 onClick = {
                     healthViewModel.delete(medicalID = medicalID,context = context, navController = navController)
                 }) {
                 Text(text = "Delete")
             }
+            Button(modifier = Modifier
+                .padding(bottom = 10.dp)
+                .fillMaxSize(),
+                onClick = {
+                    healthViewModel.retrieveHealthData(medicalID = medicalID,context = context, navController = navController)
+                }) {
+                Text(text = "Open Data in new Screen")
+            }
         }
     }
+}
+
+
+
+@Preview(showBackground = true)
+@Composable
+fun GetHealthInfoPreview()
+{
+    GetHealthInfo(navController = rememberNavController(), healthViewModel = HealthViewModel())
 }

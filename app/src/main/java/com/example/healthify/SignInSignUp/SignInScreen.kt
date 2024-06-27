@@ -40,10 +40,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.healthify.Navigation.Screen
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlin.coroutines.coroutineContext
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -128,4 +132,10 @@ fun SignInScreen(navController: NavController, auth: FirebaseAuth) {
             Text(text = "Don't have an account? Sign Up")
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SignInPreview(){
+    SignInScreen(navController = rememberNavController(), auth = Firebase.auth)
 }

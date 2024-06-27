@@ -3,6 +3,7 @@ package com.example.healthify.Health
 import android.content.Intent
 import android.graphics.Paint.Align
 import android.net.Uri
+import androidx.annotation.ColorRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,12 +11,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -35,7 +38,7 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
         colors = listOf(Color(0xFF44A6FC), Color(0xFF75F8F2))
     )
 
-    Column(Modifier.background(gradient)) {
+    Column(Modifier.background(color = Color.White)) {
         Text(text = "Emergency Contact List",
             fontSize = 30.sp,
             fontFamily = FontFamily.Serif,
@@ -46,7 +49,7 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
         LazyColumn(modifier = Modifier.padding(16.dp)) {
 
             items(contacts) { contact ->
-                Column(modifier = Modifier.padding(vertical = 8.dp)) {
+                Column(modifier = Modifier.padding(vertical = 8.dp).clip(RoundedCornerShape(10.dp,10.dp,20.dp,20.dp))) {
                     Text(
                         text = contact.name,
                         fontSize = 20.sp,

@@ -58,9 +58,9 @@ fun MainHealthActivity(navController: NavController){
         ) {
             Box {
                 AnimatedPreloaderMainHealthActivity(modifier = Modifier
-                    .size(400.dp, 300.dp)
+                    .size(400.dp, 350.dp)
                     .align(Alignment.Center)
-                    .scale(scaleX = 1.3f, scaleY = 1.6f)
+                   // .scale(scaleX = 1.3f, scaleY = 1.6f)
                 )
             }
         }
@@ -74,7 +74,7 @@ fun MainHealthActivity(navController: NavController){
                     .weight(1f)
                     .background(gradient, shape = RoundedCornerShape(8.dp))
             ) {
-                Text(text = "Want to Save Data!")
+                Text(text = "Save your Data!")
             }
             ExtendedFloatingActionButton(
                 onClick = { navController.navigate(Screen.GetHealthInfo.route) },
@@ -84,7 +84,7 @@ fun MainHealthActivity(navController: NavController){
                     .weight(1f)
                     .background(gradient, shape = RoundedCornerShape(8.dp))
             ) {
-                Text(text = "Want your Data?")
+                Text(text = "Get your Data!")
             }
         }
         ExtendedFloatingActionButton(onClick = {  },
