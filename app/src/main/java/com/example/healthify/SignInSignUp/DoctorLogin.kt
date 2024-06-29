@@ -37,11 +37,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
+import com.example.healthify.Navigation.Screen
 import com.example.healthify.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -49,7 +52,7 @@ import com.google.firebase.ktx.Firebase
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DoctorLogin(auth: FirebaseAuth) {
+fun DoctorLogin(navController: NavController,auth: FirebaseAuth) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf<String?>(null) }
@@ -127,7 +130,7 @@ fun DoctorLogin(auth: FirebaseAuth) {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                      //  navController.navigate(Screen.GetHealthInfo.route)
+                         navController.navigate(Screen.GetHealthInfo.route)
                     } else {
                         errorMessage = task.exception?.message
                     }
@@ -137,11 +140,10 @@ fun DoctorLogin(auth: FirebaseAuth) {
                 .padding(16.dp)
                 .background(gradient, shape = RoundedCornerShape(8.dp))
                 .height(50.dp),
-
             ) {
             Text(text = "Log In")
         }
-        TextButton(onClick = { /* navController.navigate(Screen.Login.route) */ }) {
+        TextButton(onClick = {  navController.navigate(Screen.Login.route)  }) {
             Text(text = "Are you a Patient? Sign In")
         }
     }
@@ -169,8 +171,52 @@ fun AnimatedPreloaderPatient(modifier: Modifier = Modifier) {
     )
 }
 
+@Composable
+fun AnimatedPatientSignIn(modifier: Modifier = Modifier) {
+    val preloaderLottieComposition by rememberLottieComposition(
+        LottieCompositionSpec.RawRes(
+            R.raw.heartanimation
+        )
+    )
+
+    val preloaderProgress by animateLottieCompositionAsState(
+        preloaderLottieComposition,
+        iterations = LottieConstants.IterateForever,
+        isPlaying = true
+    )
+
+
+    LottieAnimation(
+        composition = preloaderLottieComposition,
+        progress = preloaderProgress,
+        modifier = modifier
+    )
+}
+
+@Composable
+fun AnimatedPatientSignUp(modifier: Modifier = Modifier) {
+    val preloaderLottieComposition by rememberLottieComposition(
+        LottieCompositionSpec.RawRes(
+            R.raw.heartanimation
+        )
+    )
+
+    val preloaderProgress by animateLottieCompositionAsState(
+        preloaderLottieComposition,
+        iterations = LottieConstants.IterateForever,
+        isPlaying = true
+    )
+
+
+    LottieAnimation(
+        composition = preloaderLottieComposition,
+        progress = preloaderProgress,
+        modifier = modifier
+    )
+}
+
 @Preview(showBackground = true)
 @Composable
 fun DoctorLoginPreview(){
-    DoctorLogin(auth = Firebase.auth)
+    DoctorLogin(navController = rememberNavController(), auth = Firebase.auth)
 }

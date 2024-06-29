@@ -2,12 +2,15 @@ package com.example.healthify.SignInSignUp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
@@ -21,8 +24,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -44,7 +49,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.healthify.Navigation.Screen
+import com.example.healthify.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -64,6 +75,21 @@ fun SignInScreen(navController: NavController, auth: FirebaseAuth) {
     Column(modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .paddingFromBaseline(top = 10.dp, bottom = 10.dp),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            Box {
+                com.example.healthify.SignInSignUp.AnimatedPatientSignIn(modifier = Modifier
+                    .size(500.dp, 400.dp)
+                    .align(Alignment.Center)
+                    // .scale(scaleX = 1.3f, scaleY = 1.6f)
+                )
+            }
+        }
+
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
@@ -131,6 +157,9 @@ fun SignInScreen(navController: NavController, auth: FirebaseAuth) {
         TextButton(onClick = { navController.navigate(Screen.SignUp.route) }) {
             Text(text = "Don't have an account? Sign Up")
         }
+        TextButton(onClick = { navController.navigate(Screen.DoctorLogin.route) }) {
+            Text(text = "Are you a Doctor? Log in")
+        }
     }
 }
 
@@ -138,4 +167,26 @@ fun SignInScreen(navController: NavController, auth: FirebaseAuth) {
 @Composable
 fun SignInPreview(){
     SignInScreen(navController = rememberNavController(), auth = Firebase.auth)
+}
+
+@Composable
+fun AnimatedPatientSignIn(modifier: Modifier = Modifier) {
+    val preloaderLottieComposition by rememberLottieComposition(
+        LottieCompositionSpec.RawRes(
+            R.raw.heartanimation
+        )
+    )
+
+    val preloaderProgress by animateLottieCompositionAsState(
+        preloaderLottieComposition,
+        iterations = LottieConstants.IterateForever,
+        isPlaying = true
+    )
+
+
+    LottieAnimation(
+        composition = preloaderLottieComposition,
+        progress = preloaderProgress,
+        modifier = modifier
+    )
 }

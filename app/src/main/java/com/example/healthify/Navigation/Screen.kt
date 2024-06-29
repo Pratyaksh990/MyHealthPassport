@@ -7,4 +7,8 @@ sealed class Screen(val route: String) {
     object MainHealthActivity: Screen(route = "main_screen")
     object HealthInfo: Screen(route = "health_info")
     object GetHealthInfo: Screen(route = "get_health_info")
+    object PatientDetails: Screen(route = "patient_details/{patientData}")
+    object DoctorLogin: Screen(route = "doctor_login")
+    object EmergencyContacts: Screen(route = "emergency_contacts")
+    object SplashScreen: Screen(route = "splash")
 }

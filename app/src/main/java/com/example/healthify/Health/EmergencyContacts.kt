@@ -28,6 +28,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import kotlin.random.Random
 
 @Composable
@@ -38,7 +39,7 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
         colors = listOf(Color(0xFF44A6FC), Color(0xFF75F8F2))
     )
 
-    Column(Modifier.background(color = Color.White)) {
+    Column(Modifier.background(color = Color.White).padding(0.dp,25.dp)) {
         Text(text = "Emergency Contact List",
             fontSize = 30.sp,
             fontFamily = FontFamily.Serif,
@@ -82,9 +83,8 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun EmergencyContactsListPreview() {
+fun EmergencyContactsListPreview(navController: NavController) {
     val contacts = listOf(
         EmergencyContact("Police", "100"),
         EmergencyContact("Ambulance", "102"),

@@ -1,6 +1,9 @@
 package com.example.healthify.Health
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,6 +18,7 @@ import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -23,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
@@ -35,6 +40,9 @@ import com.example.healthify.Navigation.Screen
 
 @Composable
 fun MainHealthActivity(navController: NavController){
+
+    val context = LocalContext.current
+
     val gradient = Brush.horizontalGradient(
         colors = listOf(Color(0xFF00BCD4), Color(0xFF1E88E5))
     )
@@ -87,13 +95,18 @@ fun MainHealthActivity(navController: NavController){
                 Text(text = "Get your Data!")
             }
         }
-        ExtendedFloatingActionButton(onClick = {  },
+        ExtendedFloatingActionButton(onClick = { navController.navigate(Screen.EmergencyContacts.route) },
             modifier = Modifier
                 .padding(3.dp)
                 .align(Alignment.CenterHorizontally)
                 .background(gradientx, shape = RoundedCornerShape(8.dp))
         ) {
             Text(text = "Emergency Helpline numbers")
+        }
+        TextButton(onClick = { val intent = Intent(Intent.ACTION_VIEW, Uri.parse(""))
+                                context.startActivity(intent)
+                             }, modifier = Modifier.padding(50.dp).align(alignment = Alignment.CenterHorizontally)) {
+            Text(text = "Community and Support", textDecoration = TextDecoration.Underline)
         }
     }
 }
