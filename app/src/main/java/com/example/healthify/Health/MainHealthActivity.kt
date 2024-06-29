@@ -103,7 +103,7 @@ fun MainHealthActivity(navController: NavController){
         ) {
             Text(text = "Emergency Helpline numbers")
         }
-        TextButton(onClick = { val intent = Intent(Intent.ACTION_VIEW, Uri.parse(""))
+        TextButton(onClick = { val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/myhealthpassport?igsh=YzljYTk1ODg3Zg=="))
                                 context.startActivity(intent)
                              }, modifier = Modifier.padding(50.dp).align(alignment = Alignment.CenterHorizontally)) {
             Text(text = "Community and Support", textDecoration = TextDecoration.Underline)

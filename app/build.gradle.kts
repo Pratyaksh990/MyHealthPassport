@@ -62,7 +62,6 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation("com.google.firebase:firebase-auth:21.0.1")
 
-
     val nav_version = "2.7.7"
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
@@ -77,8 +76,7 @@ dependencies {
 
     implementation("com.airbnb.android:lottie-compose:6.4.0")
     implementation("androidx.core:core-splashscreen:1.0.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+
 
     // Import the BoM for the Firebase platform
     implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
